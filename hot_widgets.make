@@ -1,9 +1,9 @@
-; Panopoly Widgets Makefile
+; hotsauce Widgets Makefile
 
 api = 2
 core = 7.x
 
-; Panopoly - Contrib - Fields
+; hotsauce - Contrib - Fields
 
 projects[tablefield][version] = 2.2
 projects[tablefield][subdir] = contrib
@@ -12,12 +12,12 @@ projects[tablefield][patch][2050657] = "http://drupal.org/files/tablefield_event
 projects[simple_gmap][version] = 1.2
 projects[simple_gmap][subdir] = contrib
 
-; Panopoly - Contrib - Widgets
+; hotsauce - Contrib - Widgets
 
 projects[menu_block][version] = 2.3
 projects[menu_block][subdir] = contrib
 
-; Panopoly - Contrib - Files & Media
+; hotsauce - Contrib - Files & Media
 
 projects[file_entity][version] = 2.x-dev
 projects[file_entity][subdir] = contrib

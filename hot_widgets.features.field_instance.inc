@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * panopoly_widgets.features.field_instance.inc
+ * hot_widgetss.features.field_instance.inc
  */
 
 /**
  * Implements hook_field_default_field_instances().
  */
-function panopoly_widgets_field_default_field_instances() {
+function hot_widgetss_field_default_field_instances() {
   $field_instances = array();
 
   // Exported field_instance: 'fieldable_panels_pane-basic_file-field_basic_file_file'
@@ -127,7 +127,7 @@ function panopoly_widgets_field_default_field_instances() {
         'module' => 'image',
         'settings' => array(
           'image_link' => '',
-          'image_style' => 'panopoly_image_full',
+          'image_style' => 'hotsauce_image_full',
         ),
         'type' => 'image',
         'weight' => 0,
@@ -162,7 +162,7 @@ function panopoly_widgets_field_default_field_instances() {
         'manualcrop_maximize_default_crop_area' => 1,
         'manualcrop_require_cropping' => array(),
         'manualcrop_styles_list' => array(
-          'panopoly_image_full' => 'panopoly_image_full',
+          'hotsauce_image_full' => 'hotsauce_image_full',
         ),
         'manualcrop_styles_mode' => 'include',
         'manualcrop_thumblist' => 0,
@@ -310,11 +310,11 @@ function panopoly_widgets_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'hidden',
-        'module' => 'panopoly_widgets',
+        'module' => 'hot_widgetss',
         'settings' => array(
-          'image_style' => 'panopoly_image_spotlight',
+          'image_style' => 'hotsauce_image_spotlight',
         ),
-        'type' => 'panopoly_spotlight_default',
+        'type' => 'hotsauce_spotlight_default',
         'weight' => 0,
       ),
     ),
@@ -335,9 +335,9 @@ function panopoly_widgets_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 0,
-      'module' => 'panopoly_widgets',
+      'module' => 'hot_widgetss',
       'settings' => array(),
-      'type' => 'panopoly_spotlight_form',
+      'type' => 'hotsauce_spotlight_form',
       'weight' => -4,
     ),
   );

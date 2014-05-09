@@ -36,7 +36,7 @@ Drupal.settings.spotlight_settings = Drupal.settings.spotlight_settings || {};
  /**
   * Form behavior for Spotlight
   */
- Drupal.behaviors.panopolySpotlight = {
+ Drupal.behaviors.hotsauceSpotlight = {
    attach: function (context, settings) {
      if ($('.field-name-field-basic-spotlight-items').length) {
        var rotation_time = Drupal.settings.spotlight_settings.rotation_time;
@@ -45,15 +45,15 @@ Drupal.settings.spotlight_settings = Drupal.settings.spotlight_settings || {};
        // $('.field-name-field-basic-spotlight-items').css('overflow', 'hidden');
 
        // Navigation is hidden by default, display it if JavaScript is enabled.
-       $('.panopoly-spotlight-buttons-wrapper').css('display', 'block');
-       
-       $('.panopoly-spotlight-pause-play').bind('click', function(event) {
+       $('.hotsauce-spotlight-buttons-wrapper').css('display', 'block');
+
+       $('.hotsauce-spotlight-pause-play').bind('click', function(event) {
          event.preventDefault();
          if ($(this).hasClass('paused')) {
            $('.field-name-field-basic-spotlight-items').tabs().tabs("rotate", rotation_time, true);
            $(this).text(Drupal.t('Pause'));
            $(this).removeClass('paused');
-         } 
+         }
          else {
            $('.field-name-field-basic-spotlight-items').tabs().tabs("rotate", 0, false);
            $('.field-name-field-basic-spotlight-items .ui-tabs-nav li a').attr('tabindex', 0);
@@ -68,7 +68,7 @@ Drupal.settings.spotlight_settings = Drupal.settings.spotlight_settings || {};
  /**
   * Create responsive magic for Table Widget
   */
- Drupal.behaviors.panopolyWidgetTables = {
+ Drupal.behaviors.hotsauceWidgetTables = {
    attach: function (context, settings) {
 
      $('table.tablefield', context).each(function() {

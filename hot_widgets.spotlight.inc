@@ -2,19 +2,19 @@
 
 /**
  * @file
- * A specification for the custom spotlight entity that is part of Panopoly Widgets
+ * A specification for the custom spotlight entity that is part of hotsauce Widgets
  */
 
 /**
  * Implements hook_field_info().
  */
-function panopoly_widgets_field_info() {
+function hot_widgetss_field_info() {
   return array(
-    'panopoly_spotlight' => array(
+    'hotsauce_spotlight' => array(
       'label' => t('Spotlight'),
       'description' => t('A wonderfully widgetsal spotlight field'),
-      'default_widget' => 'panopoly_spotlight_form',
-      'default_formatter' => 'panopoly_spotlight_default',
+      'default_widget' => 'hotsauce_spotlight_form',
+      'default_formatter' => 'hotsauce_spotlight_default',
       'settings' => array(
         'uri_scheme' => variable_get('file_default_scheme', 'public'),
         'default_image' => 1,
@@ -35,7 +35,7 @@ function panopoly_widgets_field_info() {
 /**
  * Implements hook_field_is_empty()
  */
-function panopoly_widgets_field_is_empty($item, $field) {
+function hot_widgetss_field_is_empty($item, $field) {
   if (empty($item['title']) && empty($item['link']) && empty($item['description']) && empty($item['fid'])) {
     return TRUE;
   }
@@ -45,11 +45,11 @@ function panopoly_widgets_field_is_empty($item, $field) {
 /**
  * Implements hook_field_widget_info().
  */
-function panopoly_widgets_field_widget_info() {
+function hot_widgetss_field_widget_info() {
   return array(
-    'panopoly_spotlight_form' => array(
+    'hotsauce_spotlight_form' => array(
       'label' => t('Spotlight'),
-      'field types' => array('panopoly_spotlight'),
+      'field types' => array('hotsauce_spotlight'),
       'behaviors' => array(
         'multiple values' => FIELD_BEHAVIOR_DEFAULT,
         'default value' => FIELD_BEHAVIOR_DEFAULT,
@@ -61,7 +61,7 @@ function panopoly_widgets_field_widget_info() {
 /**
  * Implements hook_field_settings_form()
  */
-function panopoly_widgets_field_settings_form($field, $instance, $has_data) {
+function hot_widgetss_field_settings_form($field, $instance, $has_data) {
   $form = array();
   $defaults = field_info_field_settings($field['type']);
   $settings = array_merge($defaults, $field['settings']);
@@ -95,7 +95,7 @@ function panopoly_widgets_field_settings_form($field, $instance, $has_data) {
 /**
  * Implements hook_field_instance_settings_form()
  */
-function panopoly_widgets_field_instance_settings_form($field, $instance) {
+function hot_widgetss_field_instance_settings_form($field, $instance) {
   $form = image_field_instance_settings_form($field, $instance);
   return $form;
 }
@@ -103,13 +103,13 @@ function panopoly_widgets_field_instance_settings_form($field, $instance) {
 /**
  * Implementation of hook_field_formatter_info().
  */
-function panopoly_widgets_field_formatter_info() {
+function hot_widgetss_field_formatter_info() {
   return array(
-    'panopoly_spotlight_default' => array(
+    'hotsauce_spotlight_default' => array(
       'label' => t('Default'),
-      'field types' => array('panopoly_spotlight'),
+      'field types' => array('hotsauce_spotlight'),
       'settings' => array(
-        'image_style' => 'panopoly_image_spotlight',
+        'image_style' => 'hotsauce_image_spotlight',
       ),
     ),
   );
@@ -118,14 +118,14 @@ function panopoly_widgets_field_formatter_info() {
 /**
  * Implements hook_field_formatter_settings_form().
  */
-function panopoly_widgets_field_formatter_settings_form($field, $instance, $view_mode, $form, &$form_state) {
+function hot_widgetss_field_formatter_settings_form($field, $instance, $view_mode, $form, &$form_state) {
   $display = $instance['display'][$view_mode];
   $settings = $display['settings'];
   $element = array();
 
-  if ($display['type'] == 'panopoly_spotlight_default') {
+  if ($display['type'] == 'hotsauce_spotlight_default') {
     $element['image_style'] = array(
-      '#title' => t('Image style'), 
+      '#title' => t('Image style'),
       '#type' => 'select',
       '#options' => image_style_options(),
       '#default_value' => $settings['image_style'],
@@ -139,10 +139,10 @@ function panopoly_widgets_field_formatter_settings_form($field, $instance, $view
 /**
  * Implements hook_field_formatter_settings_summary().
  */
-function panopoly_widgets_field_formatter_settings_summary($field, $instance, $view_mode) {
+function hot_widgetss_field_formatter_settings_summary($field, $instance, $view_mode) {
   $display = $instance['display'][$view_mode];
   $settings = $display['settings'];
-  
+
   $summary = t('Image Style: @style', array('@style' => $settings['image_style']));
   return $summary;
 }
@@ -150,30 +150,30 @@ function panopoly_widgets_field_formatter_settings_summary($field, $instance, $v
 /**
  * Implements hook_field_formatter_view().
  */
-function panopoly_widgets_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+function hot_widgetss_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
   $element = array();
   $settings = $display['settings'];
   $formatter = $display['type'];
   drupal_add_library('system', 'ui.tabs');
 
   // Assemble the tabs header
-  $header = '<div class="panopoly-spotlight-buttons-wrapper">';
+  $header = '<div class="hotsauce-spotlight-buttons-wrapper">';
   $header .= '<ul>';
   foreach ($items as $delta => $item_data) {
-    $header .= '<li>' . '<a href="#panopoly-spotlight-' . $delta . '">' . ($delta+1) . '</a></li>'; 
+    $header .= '<li>' . '<a href="#hotsauce-spotlight-' . $delta . '">' . ($delta+1) . '</a></li>';
   }
   $header .= '</ul>';
 
-  if (variable_get('panopoly_widgets_spotlight_pause_play_buttons', 1)) {
-    $header .= '<div class="panopoly-spotlight-function-buttons">';
-    $header .= '<a href="#" class="panopoly-spotlight-pause-play">' . t('Pause') . '</a>';
+  if (variable_get('hot_widgetss_spotlight_pause_play_buttons', 1)) {
+    $header .= '<div class="hotsauce-spotlight-function-buttons">';
+    $header .= '<a href="#" class="hotsauce-spotlight-pause-play">' . t('Pause') . '</a>';
     $header .= '</div>';
   }
-  $header .= '</div>';  // class="panopoly-spotlight-buttons-wrapper"
+  $header .= '</div>';  // class="hotsauce-spotlight-buttons-wrapper"
 
   // Assemble the tabs content
   foreach ($items as $delta => $item_data) {
-    $element[$delta]['#markup'] = (($delta == 0) ? $header : '') . theme('panopoly_spotlight_view', array('items' => $item_data, 'delta' => $delta, 'settings' => $settings));
+    $element[$delta]['#markup'] = (($delta == 0) ? $header : '') . theme('hotsauce_spotlight_view', array('items' => $item_data, 'delta' => $delta, 'settings' => $settings));
   }
   return $element;
 }
@@ -181,11 +181,11 @@ function panopoly_widgets_field_formatter_view($entity_type, $entity, $field, $i
 /**
  * Implements hook_field_widget_form().
  */
-function panopoly_widgets_field_widget_form(&$form, &$form_state, $field, $instance, $langcode, $items, $delta, $element) {
+function hot_widgetss_field_widget_form(&$form, &$form_state, $field, $instance, $langcode, $items, $delta, $element) {
 
-  if ($instance['widget']['type'] == 'panopoly_spotlight_form') {
-   
-    // Make it a multipart form  
+  if ($instance['widget']['type'] == 'hotsauce_spotlight_form') {
+
+    // Make it a multipart form
     $form['#attributes']['enctype'] = 'multipart/form-data';
 
     // Define the element
@@ -229,11 +229,11 @@ function panopoly_widgets_field_widget_form(&$form, &$form_state, $field, $insta
 /**
  * Implements hook_field_validate().
  */
-function panopoly_widgets_field_validate($entity_type, $entity, $field, $instance, $langcode, $items, &$errors) {
+function hot_widgetss_field_validate($entity_type, $entity, $field, $instance, $langcode, $items, &$errors) {
   foreach ($items as $delta => $item) {
-    if (!panopoly_widgets_field_is_empty($item, $field) && empty($item['fid'])) {
+    if (!hot_widgetss_field_is_empty($item, $field) && empty($item['fid'])) {
       $errors[$field['field_name']][$langcode][$delta][] = array(
-        'error' => 'panopoly_widgets_spotlight_image_required',
+        'error' => 'hot_widgetss_spotlight_image_required',
         'message' => t('!name field is required.', array('!name' => t('Image'))),
       );
     }
@@ -243,14 +243,14 @@ function panopoly_widgets_field_validate($entity_type, $entity, $field, $instanc
 /**
  * Implements hook_field_presave()
  */
-function panopoly_widgets_field_presave($entity_type, $entity, $field, $instance, $langcode, &$items) {
+function hot_widgetss_field_presave($entity_type, $entity, $field, $instance, $langcode, &$items) {
   // We need to set presave values if fids are not set. This shouldn't effect save operations
   // form API validation will prevent this from ever happening unless previewing.
   if (!empty($items)) {
     foreach ($items as &$item) {
       if (empty($item['fid'])) {
-        $fid = variable_get('panopoly_widgets_default_' . $entity->bundle . '_fid', NULL);
-        
+        $fid = variable_get('hot_widgetss_default_' . $entity->bundle . '_fid', NULL);
+
         if (!empty($fid)) {
           $item['fid'] = $fid;
         }
@@ -263,7 +263,7 @@ function panopoly_widgets_field_presave($entity_type, $entity, $field, $instance
 /**
  * Implements hook_field_load().
  */
-function panopoly_widgets_field_load($entity_type, $entities, $field, $instances, $langcode, &$items, $age) {
+function hot_widgetss_field_load($entity_type, $entities, $field, $instances, $langcode, &$items, $age) {
   $entity_items_copy = $items;
   image_field_load($entity_type, $entities, $field, $instances, $langcode, $items, $age);
   // image_field_load() will overwrite 'title' with the image title. Here we
@@ -278,17 +278,17 @@ function panopoly_widgets_field_load($entity_type, $entities, $field, $instances
 /**
  * Implements hook_field_insert().
  */
-function panopoly_widgets_field_insert($entity_type, $entity, $field, $instance, $langcode, &$items) {
+function hot_widgetss_field_insert($entity_type, $entity, $field, $instance, $langcode, &$items) {
   image_field_insert($entity_type, $entity, $field, $instance, $langcode, $items);
 }
 
 /**
  * Implements hook_field_update().
  */
-function panopoly_widgets_field_update($entity_type, $entity, $field, $instance, $langcode, &$items) {
+function hot_widgetss_field_update($entity_type, $entity, $field, $instance, $langcode, &$items) {
 
   // Load the original entity, if $entity->original is not already set.
-  // This is done as per http://drupal.org/node/985642 and can be removed when that patch is committed. 
+  // This is done as per http://drupal.org/node/985642 and can be removed when that patch is committed.
   if (empty($entity->original)) {
     $entity->original = entity_load_unchanged($entity_type, $field['id']);
   }
@@ -299,23 +299,23 @@ function panopoly_widgets_field_update($entity_type, $entity, $field, $instance,
 /**
  * Implements hook_field_delete().
  */
-function panopoly_widgets_field_delete($entity_type, $entity, $field, $instance, $langcode, &$items) {
+function hot_widgetss_field_delete($entity_type, $entity, $field, $instance, $langcode, &$items) {
   image_field_delete($entity_type, $entity, $field, $instance, $langcode, $items);
 }
 
 /**
  * Implements hook_field_delete_revision().
  */
-function panopoly_widgets_field_delete_revision($entity_type, $entity, $field, $instance, $langcode, &$items) {
+function hot_widgetss_field_delete_revision($entity_type, $entity, $field, $instance, $langcode, &$items) {
   image_field_delete_revision($entity_type, $entity, $field, $instance, $langcode, $items);
 }
 
 /**
  * Implements hook_field_prepare_view().
  */
-function panopoly_widgets_field_prepare_view($entity_type, $entities, $field, $instances, $langcode, &$items) {
+function hot_widgetss_field_prepare_view($entity_type, $entities, $field, $instances, $langcode, &$items) {
   // If there are no files specified at all, use the default.
-  // TODO - make sure this works 
+  // TODO - make sure this works
   foreach ($entities as $id => $entity) {
     if (empty($items[$id]) && $field['settings']['default_image']) {
       if ($file = file_load($field['settings']['default_image'])) {
@@ -332,7 +332,7 @@ function panopoly_widgets_field_prepare_view($entity_type, $entities, $field, $i
 /**
  * Theme function for table view
  */
-function theme_panopoly_spotlight_view($variables) {
+function theme_hotsauce_spotlight_view($variables) {
   $title = $variables['items']['title'];
   $description = $variables['items']['description'];
   $link = $variables['items']['link'];
@@ -347,17 +347,17 @@ function theme_panopoly_spotlight_view($variables) {
     $image = (object) $variables['items'];
   }
 
-  $output = '<div id="' . 'panopoly-spotlight-' . $variables['delta'] . '" class="' . 'panopoly-spotlight' . '">';
+  $output = '<div id="' . 'hotsauce-spotlight-' . $variables['delta'] . '" class="' . 'hotsauce-spotlight' . '">';
   $output .= theme('image_style', array('style_name' => $settings['image_style'], 'path' => $image->uri, 'alt' => $alt));
-  $output .= '<div class="panopoly-spotlight-wrapper">';
+  $output .= '<div class="hotsauce-spotlight-wrapper">';
   if (!empty($title) || !empty($link)) {
     if (empty($title)) {
       $title = t('Link');
     }
-    $output .= '<h3 class="panopoly-spotlight-label">' . (empty($link) ? check_plain($title) : l($title, $link)) . '</h3>';
+    $output .= '<h3 class="hotsauce-spotlight-label">' . (empty($link) ? check_plain($title) : l($title, $link)) . '</h3>';
   }
   if (!empty($description)) {
-    $output .= '<div class="panopoly-spotlight-info">';
+    $output .= '<div class="hotsauce-spotlight-info">';
     $output .= '<p>' . $description . '</p>';
     $output .= '</div>';
   }

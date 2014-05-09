@@ -2,13 +2,13 @@
 
 /**
  * @file
- * An installation file for Panopoly Widgets
+ * An installation file for hotsauce Widgets
  */
 
 /**
  * Implementation of hook_install().
  */
-function panopoly_widgets_install() {
+function hot_widgetss_install() {
 
 }
 
@@ -16,13 +16,13 @@ function panopoly_widgets_install() {
 /**
  * Implementation of hook_uninstall().
  */
-function panopoly_widgets_uninstall() {
+function hot_widgetss_uninstall() {
 
   // Retrieve the file IDs for default files
   $fids = array(
-    'panopoly_widgets_default_spotlight_fid' => variable_get('panopoly_widgets_default_spotlight_fid', NULL), 
-    'panopoly_widgets_default_image_fid' => variable_get('panopoly_widgets_default_image_fid', NULL), 
-    'panopoly_widgets_default_video_fid' => variable_get('panopoly_widgets_default_video_fid', NULL)
+    'hot_widgetss_default_spotlight_fid' => variable_get('hot_widgetss_default_spotlight_fid', NULL),
+    'hot_widgetss_default_image_fid' => variable_get('hot_widgetss_default_image_fid', NULL),
+    'hot_widgetss_default_video_fid' => variable_get('hot_widgetss_default_video_fid', NULL)
   );
 
   foreach($fids as $variable_name => $fid) {
@@ -36,15 +36,15 @@ function panopoly_widgets_uninstall() {
     variable_del($variable_name);
   }
 
-  variable_del('panopoly_widgets_spotlight_pause_play_buttons');
-  variable_del('panopoly_widgets_spotlight_rotation_time');
+  variable_del('hot_widgetss_spotlight_pause_play_buttons');
+  variable_del('hot_widgetss_spotlight_rotation_time');
 }
 
 /**
  * Implementation of hook_field_schema().
  */
-function panopoly_widgets_field_schema($field) {
-  if ($field['type'] == 'panopoly_spotlight') {
+function hot_widgetss_field_schema($field) {
+  if ($field['type'] == 'hotsauce_spotlight') {
     $schema['columns']['title'] = array(
       'type' => 'varchar',
       'length' => '255',
@@ -58,7 +58,7 @@ function panopoly_widgets_field_schema($field) {
     );
 
     $schema['columns']['fid'] = array(
-      'type' => 'int', 
+      'type' => 'int',
       'not null' => FALSE,
       'unsigned' => TRUE,
     );
@@ -93,12 +93,12 @@ function panopoly_widgets_field_schema($field) {
 /**
  * Implements hook_update_dependencies().
  */
-function panopoly_widgets_update_dependencies() {
+function hot_widgetss_update_dependencies() {
   $deps = array();
-  $deps['panopoly_widgets'][7005] = array(
-    // I think that file_load() in our panopoly_widgets_update_7005() will
+  $deps['hot_widgetss'][7005] = array(
+    // I think that file_load() in our hot_widgetss_update_7005() will
     // attempt to use pathauto, which means it's a dependency.
-    'panopoly_core' => 7002,
+    'hotsauce_core' => 7002,
   );
   return $deps;
 }
@@ -108,19 +108,19 @@ function panopoly_widgets_update_dependencies() {
  *
  * Adding the default files for images, spotlights, and files to the database
  */
-function panopoly_widgets_update_7001(&$sandbox) {
+function hot_widgetss_update_7001(&$sandbox) {
   // This section has been removed
 }
 
 /**
  * Implementation of hook_update_N().
  *
- * Revert panopoly_widget fields to avoid data loss in update 7003.
+ * Revert hot_widgets fields to avoid data loss in update 7003.
  */
-function panopoly_widgets_update_7002(&$sandbox) {
+function hot_widgetss_update_7002(&$sandbox) {
   module_load_include('inc', 'features', 'features.export');
   features_include();
-  features_revert(array('panopoly_widgets' => array('field')));
+  features_revert(array('hot_widgetss' => array('field')));
 }
 
 /**
@@ -128,7 +128,7 @@ function panopoly_widgets_update_7002(&$sandbox) {
  *
  * Move video mediafield data into a file field.
  */
-function panopoly_widgets_update_7003(&$sandbox) {
+function hot_widgetss_update_7003(&$sandbox) {
   $results = entity_load('fieldable_panels_pane');
   foreach ($results as $entity) {
     foreach ($entity->field_video_video[LANGUAGE_NONE] as $f) {
@@ -151,7 +151,7 @@ function panopoly_widgets_update_7003(&$sandbox) {
  *
  * Convert panel panes with "uuid" style subtypes into "fpid" style subtypes.
  */
-function panopoly_widgets_update_7004(&$sandbox) {
+function hot_widgetss_update_7004(&$sandbox) {
   $results = db_select('panels_pane', 'p')
     ->fields('p', array('pid', 'subtype'))
     ->execute()
@@ -180,13 +180,13 @@ function panopoly_widgets_update_7004(&$sandbox) {
  *
  * Removes the default content from the database and file system
  */
-function panopoly_widgets_update_7005(&$sandbox) {
+function hot_widgetss_update_7005(&$sandbox) {
 
   // Retrieve the file IDs for default files
   $fids = array(
-    'panopoly_widgets_default_spotlight_fid' => variable_get('panopoly_widgets_default_spotlight_fid', NULL),
-    'panopoly_widgets_default_image_fid' => variable_get('panopoly_widgets_default_image_fid', NULL),
-    'panopoly_widgets_default_video_fid' => variable_get('panopoly_widgets_default_video_fid', NULL)
+    'hot_widgetss_default_spotlight_fid' => variable_get('hot_widgetss_default_spotlight_fid', NULL),
+    'hot_widgetss_default_image_fid' => variable_get('hot_widgetss_default_image_fid', NULL),
+    'hot_widgetss_default_video_fid' => variable_get('hot_widgetss_default_video_fid', NULL)
   );
 
   foreach($fids as $variable_name => $fid) {
@@ -206,8 +206,8 @@ function panopoly_widgets_update_7005(&$sandbox) {
  *
  * Revert the 'file_display' so YouTube works in WYSIWYG with newer Media.
  */
-function panopoly_widgets_update_7006(&$sandbox) {
-  features_revert(array('panopoly_widgets' => array('file_display')));
+function hot_widgetss_update_7006(&$sandbox) {
+  features_revert(array('hot_widgetss' => array('file_display')));
 }
 
 /**
@@ -215,7 +215,7 @@ function panopoly_widgets_update_7006(&$sandbox) {
  *
  * Add an "alt" field for spotlight items.
  */
-function panopoly_widgets_update_7007(&$sandbox) {
+function hot_widgetss_update_7007(&$sandbox) {
   $spec = array(
     'type' => 'varchar',
     'length' => 255,

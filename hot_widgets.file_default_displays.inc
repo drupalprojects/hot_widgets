@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * panopoly_widgets.file_default_displays.inc
+ * hot_widgetss.file_default_displays.inc
  */
 
 /**
  * Implements hook_file_default_displays().
  */
-function panopoly_widgets_file_default_displays() {
+function hot_widgetss_file_default_displays() {
   $export = array();
 
   $file_display = new stdClass();
@@ -16,7 +16,7 @@ function panopoly_widgets_file_default_displays() {
   $file_display->weight = 1;
   $file_display->status = TRUE;
   $file_display->settings = array(
-    'image_style' => 'panopoly_image_video',
+    'image_style' => 'hotsauce_image_video',
   );
   $export['video__default__media_youtube_image'] = $file_display;
 
@@ -66,7 +66,7 @@ function panopoly_widgets_file_default_displays() {
   $file_display->weight = 0;
   $file_display->status = TRUE;
   $file_display->settings = array(
-    'image_style' => 'panopoly_image_thumbnail',
+    'image_style' => 'hotsauce_image_thumbnail',
   );
   $export['video__preview__media_youtube_image'] = $file_display;
 
@@ -76,7 +76,7 @@ function panopoly_widgets_file_default_displays() {
   $file_display->weight = 1;
   $file_display->status = TRUE;
   $file_display->settings = array(
-    'image_style' => 'panopoly_image_video',
+    'image_style' => 'hotsauce_image_video',
   );
   $export['video__teaser__media_youtube_image'] = $file_display;
 

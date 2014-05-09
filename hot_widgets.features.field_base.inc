@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * panopoly_widgets.features.field_base.inc
+ * hot_widgetss.features.field_base.inc
  */
 
 /**
  * Implements hook_field_default_field_bases().
  */
-function panopoly_widgets_field_default_field_bases() {
+function hot_widgetss_field_default_field_bases() {
   $field_bases = array();
 
   // Exported field_base: 'field_basic_file_file'
@@ -146,13 +146,13 @@ function panopoly_widgets_field_default_field_bases() {
       ),
     ),
     'locked' => 0,
-    'module' => 'panopoly_widgets',
+    'module' => 'hot_widgetss',
     'settings' => array(
       'default_image' => 0,
       'uri_scheme' => 'public',
     ),
     'translatable' => 0,
-    'type' => 'panopoly_spotlight',
+    'type' => 'hotsauce_spotlight',
   );
 
   // Exported field_base: 'field_basic_table_table'

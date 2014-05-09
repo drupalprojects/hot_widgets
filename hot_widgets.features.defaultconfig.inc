@@ -1,15 +1,15 @@
 <?php
 /**
  * @file
- * panopoly_widgets.features.defaultconfig.inc
+ * hot_widgetss.features.defaultconfig.inc
  */
 
 /**
  * Implements hook_defaultconfig_features().
  */
-function panopoly_widgets_defaultconfig_features() {
+function hot_widgetss_defaultconfig_features() {
   return array(
-    'panopoly_widgets' => array(
+    'hot_widgetss' => array(
       'user_default_permissions' => 'user_default_permissions',
     ),
   );
@@ -18,7 +18,7 @@ function panopoly_widgets_defaultconfig_features() {
 /**
  * Implements hook_defaultconfig_user_default_permissions().
  */
-function panopoly_widgets_defaultconfig_user_default_permissions() {
+function hot_widgetss_defaultconfig_user_default_permissions() {
   $permissions = array();
 
   // Exported permission: 'add media from remote sources'.

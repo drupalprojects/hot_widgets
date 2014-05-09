@@ -1,21 +1,21 @@
 <?php
 /**
  * @file
- * panopoly_widgets.views_default.inc
+ * hot_widgetss.views_default.inc
  */
 
 /**
  * Implements hook_views_default_views().
  */
-function panopoly_widgets_views_default_views() {
+function hot_widgetss_views_default_views() {
   $export = array();
 
   $view = new view();
-  $view->name = 'panopoly_widgets_general_content';
+  $view->name = 'hot_widgetss_general_content';
   $view->description = 'Administrative view to show content.';
   $view->tag = 'default';
   $view->base_table = 'node';
-  $view->human_name = 'Panopoly General';
+  $view->human_name = 'hotsauce General';
   $view->core = 7;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
@@ -56,7 +56,7 @@ function panopoly_widgets_views_default_views() {
   $handler->display->display_options['fields']['field_featured_image']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_featured_image']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_featured_image']['settings'] = array(
-    'image_style' => 'panopoly_image_quarter',
+    'image_style' => 'hotsauce_image_quarter',
     'image_link' => 'content',
   );
   /* Field: Title */
@@ -73,7 +73,7 @@ function panopoly_widgets_views_default_views() {
   $handler->display->display_options['fields']['created']['ui_name'] = 'Date';
   $handler->display->display_options['fields']['created']['label'] = '';
   $handler->display->display_options['fields']['created']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['created']['date_format'] = 'panopoly_day';
+  $handler->display->display_options['fields']['created']['date_format'] = 'hotsauce_day';
   /* Field: Author */
   $handler->display->display_options['fields']['name']['id'] = 'name';
   $handler->display->display_options['fields']['name']['table'] = 'users';
@@ -202,7 +202,7 @@ function panopoly_widgets_views_default_views() {
   $handler->display->display_options['allow']['title_override'] = 0;
   $handler->display->display_options['allow']['exposed_form'] = 'exposed_form';
   $handler->display->display_options['allow']['fields_override'] = 'fields_override';
-  $export['panopoly_widgets_general_content'] = $view;
+  $export['hot_widgetss_general_content'] = $view;
 
   return $export;
 }

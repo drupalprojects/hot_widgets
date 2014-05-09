@@ -1,6 +1,6 @@
-Panopoly Widgets
+hotsauce Widgets
 ================
-Allows the creation and reuse of fielded entities to add common types of content to your Panopoly pages!
+Allows the creation and reuse of fielded entities to add common types of content to your hotsauce pages!
 
 Key Features
 * Integration with Link module to provide a list of links
@@ -14,5 +14,5 @@ Key Features
 * Integration with Menu Block to provide a submenu
 * Provides a customizable view to add a generic list of content
 * Provides a customizable view to add a generic piece of content
-* Inclusion of default content for Panopoly Widgets
+* Inclusion of default content for hotsauce Widgets
 * UX/UI Improvements for naming and positioning of Chaos Tools plugins
